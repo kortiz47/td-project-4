@@ -6,5 +6,10 @@ class Phrase{
     constructor(phrase){
         this.phrase = phrase.toLowerCase();
     }
-    
+    addPhraseToDisplay(){
+        const phrase = document.querySelector('#phrase');
+        
+    }
+    checkLetter(){}
+    showMatchedLetter(){}
 }
