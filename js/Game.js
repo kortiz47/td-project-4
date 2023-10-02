@@ -10,27 +10,46 @@ class Game{
         this.activePhrase = null;
     }
     startGame(){
-        //hide start screen overlay
         const startScreenOverlay = document.querySelector('#overlay');
         startScreenOverlay.style.display = 'none';
 
-        //calls get getrandomPhrase() method
         this.activePhrase = this.getRandomPhrase();
-        console.log(this.activePhrase);
-
-        //adds that phrase to the board by calling the addPhraseToDisplay() method on the activePhrase property.
         const activePhrase = new Phrase(this.activePhrase);
         activePhrase.addPhraseToDisplay();
     }
+
     getRandomPhrase(){
         const randomPhrase = this.phrases[Math.floor(Math.random()*this.phrases.length)];
         return randomPhrase;
     }
 
-    handleInteraction(){}
-    removeLife(){}
-    checkForWin(){}
-    gameOver(){}
+    handleInteraction(){
+        const characters = this.activePhrase.split('');
+        const lowerCaseRegex = /[a-z]/;
+        const letters = characters.filter(character => lowerCaseRegex.test(character));
+        keyboardBtns.forEach(button =>{
+            button.addEventListener('click', (e)=>{
+                const target = e.target;
+                target.disabled = true;
+                const key = e.target.textContent;
+                if(!letters.includes(key)){
+                    target.classList.add('wrong');
+                    this.removeLife();
+                }else{
+                    this.activePhrase.
+                }
+            });
+        });
+    }
+    removeLife(){
+
+    }
+    checkForWin(){
+
+    }
+    gameOver(){
+
+    }
 }
 
 const newGame = new Game();
