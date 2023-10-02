@@ -15,10 +15,12 @@ class Game{
         startScreenOverlay.style.display = 'none';
 
         //calls get getrandomPhrase() method
-        this.activePhrase = getRandomPhrase();
+        this.activePhrase = this.getRandomPhrase();
+        console.log(this.activePhrase);
 
         //adds that phrase to the board by calling the addPhraseToDisplay() method on the activePhrase property.
-        this.activePhrase.addPhraseToDisplay();
+        const activePhrase = new Phrase(this.activePhrase);
+        activePhrase.addPhraseToDisplay();
     }
     getRandomPhrase(){
         const randomPhrase = this.phrases[Math.floor(Math.random()*this.phrases.length)];

@@ -27,6 +27,7 @@ class Phrase{
                 }
             });
         htmlCharacterElements.forEach(element => phraseUL.insertAdjacentHTML('beforeend', element));
+        this.checkLetter();
     }
     
     checkLetter(){
@@ -56,6 +57,3 @@ class Phrase{
     }
 }
 
-const testPhrase = new Phrase('hi im karla');
-testPhrase.addPhraseToDisplay();
-testPhrase.checkLetter();
