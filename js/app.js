@@ -2,13 +2,23 @@
  * Project 4 - OOP Game App
  * app.js */
 
-/**Add a click event listener to the "Start Game" button which creates a 
- * new Game object and starts the game by calling the startGame() method.
+//Global Variables
+/**
+const startGameBtn = document.querySelector('#btn__reset');
+const keyboard = document.querySelector('#qwerty');
+const keyboardBtns = keyboard.querySelectorAll('button[class = "key"]');
+const phraseDiv = document.querySelector('#phrase');
+const phraseUL = phraseDiv.querySelector('ul');
+*/
+//Event Listeners
+startGameBtn.addEventListener('click', ()=>{
+    const newGame = new Game;
+    newGame.startGame();
+});
 
-Add click event listeners to each of the onscreen keyboard buttons, 
-so that clicking a button calls the handleInteraction() method on the Game object. 
-Event delegation can also be used in order to avoid having to add an event listener to each individual keyboard button. 
-Clicking the space between and around the onscreen keyboard buttons should not result in the handleInteraction() method being called. */
+keyboardBtns.forEach(button=>{
+    button.addEventListener('click', (e)=>{
+       // newGame.handleInteraction();
 
-const phrase = new Phrase();
-const game = new Game();
+    });
+});

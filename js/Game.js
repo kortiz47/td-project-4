@@ -3,10 +3,11 @@
  * Game.js */
 
 class Game{
-    constructor(missed, activePhrase){
-        this.missed = missed; //used to track the number of missed guesses by the player
-        this.phrases = ['hello world','beatiful day','how are you','did you guess','great work']; //an array of five Phrase objects to use with the game
-        this.activePhrase = activePhrase; //the Phrase object that’s currently in play
+    //we will have to pass the updated values in as arguements - possibly
+    constructor(){
+        this.missed = 0; 
+        this.phrases = ['hello world','beatiful day','im karla','did you guess','great work']; 
+        this.activePhrase = null;
     }
     startGame(){
         //hide start screen overlay
