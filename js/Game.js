@@ -49,13 +49,13 @@ class Game{
             return false;
         }
     }
-    
+
     removeLife(){ 
         const scoreboard = document.querySelector('#scoreboard');
         const livesNodeList = scoreboard.querySelectorAll('img[src = "images/liveHeart.png"]');
         const lastNodeElement = livesNodeList[livesNodeList.length -1];
 
-        if(this.missed === 5){
+        if(this.missed === 4){
             this.gameOver();
         }else{
             lastNodeElement.setAttribute('src', 'images/lostHeart.png');

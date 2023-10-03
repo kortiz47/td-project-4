@@ -11,20 +11,24 @@ startGameBtn.addEventListener('click', ()=>{
 
 keyboardBtns.forEach(button=>{
     button.addEventListener('click', (e)=>{
+        console.log(e.target);
         keyClicked = e.target; 
         newGame.handleInteraction();
     });
 });
 
 
-// keyboardBtns.addEventListener('keyup', (e)=>{
-//     const lowerCaseRegex = /[a-z]/;
-//     if(lowerCaseRegex.test(e.key)){
-//         console.log(e.target);
-//         console.log(e.key);
-//     }
+document.addEventListener('keyup', (e)=>{
+    const lowerCaseRegex = /[a-z]/;
+    if(lowerCaseRegex.test(e.key)){
+        
+        console.log(keyboardBtns[0]);
+        console.log(e.key);
+        // keyClicked = e.key;
+        // newGame.handleInteraction();
+    }
     
-// })
+})
 
 
 
