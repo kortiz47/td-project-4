@@ -21,11 +21,12 @@ keyboardBtns.forEach(button=>{
 document.addEventListener('keyup', (e)=>{
     const lowerCaseRegex = /[a-z]/;
     if(lowerCaseRegex.test(e.key)){
-        
-        console.log(keyboardBtns[0]);
-        console.log(e.key);
-        // keyClicked = e.key;
-        // newGame.handleInteraction();
+        for(let i=0; i<keyboardBtns.length; i++){
+            if(keyboardBtns[i].textContent === e.key){
+                keyClicked = keyboardBtns[i];
+                newGame.handleInteraction();
+            }
+        }
     }
     
 })
