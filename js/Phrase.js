@@ -3,11 +3,15 @@
  * Phrase.js */
 
 //Global Variables
+let keyClicked;
+
 const startGameBtn = document.querySelector('#btn__reset');
 const keyboard = document.querySelector('#qwerty');
 const keyboardBtns = keyboard.querySelectorAll('button[class = "key"]');
 const phraseDiv = document.querySelector('#phrase');
 const phraseUL = phraseDiv.querySelector('ul');
+const startScreenOverlay = document.querySelector('#overlay');
+const gameOverMessage = document.querySelector('#game-over-message');
 
 
 class Phrase{
@@ -27,33 +31,28 @@ class Phrase{
                 }
             });
         htmlCharacterElements.forEach(element => phraseUL.insertAdjacentHTML('beforeend', element));
-        this.checkLetter();
     }
     
     checkLetter(){
-        //creates a new array that only contains the letters(not spaces) of the phrase chosen
         const characters = this.phrase.split('');
         const lowerCaseRegex = /[a-z]/;
         const letters = characters.filter(character => lowerCaseRegex.test(character));
-        
-        //event listener for each qwerty key and checks to see if the letter selected by the player matches a letter in the phrase.
-        keyboardBtns.forEach(button=>{
-            button.addEventListener('click', (e)=>{
-                const key = e.target.textContent;
-                if(letters.includes(key)){
-                    const matchedKey =  key;
-                    this.showMatchedLetter(matchedKey);
-                }
-            });
-        });
+        const key = keyClicked.textContent;
+        if(letters.includes(key)){
+            this.showMatchedLetter(key);
+        }else{
+            return false;
+        }
     } 
-    showMatchedLetter(matchedKey){
-        const selectedKeys = phraseUL.querySelectorAll(`.${matchedKey}`);
+
+    showMatchedLetter(){
+        const selectedKeys = phraseUL.querySelectorAll(`.${keyClicked.textContent}`);
         selectedKeys.forEach(selectedKey =>{
             selectedKey.classList.remove('hide');
             selectedKey.classList.add('show');
         });
         
     }
+    
 }
 

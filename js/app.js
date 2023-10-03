@@ -3,14 +3,15 @@
  * app.js */
 
 //Event Listeners
+const newGame = new Game;
+
 startGameBtn.addEventListener('click', ()=>{
-    const newGame = new Game;
     newGame.startGame();
 });
 
 keyboardBtns.forEach(button=>{
     button.addEventListener('click', (e)=>{
-       // newGame.handleInteraction();
-
+        keyClicked = e.target; 
+        newGame.handleInteraction();
     });
 });

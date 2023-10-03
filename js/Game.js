@@ -3,19 +3,16 @@
  * Game.js */
 
 class Game{
-    //we will have to pass the updated values in as arguements - possibly
     constructor(){
         this.missed = 0; 
-        this.phrases = ['hello world','beatiful day','im karla','did you guess','great work']; 
-        this.activePhrase = null; //set to newPhraseObject 
+        this.phrases = [new Phrase('hello world'), new Phrase('beatiful day'), new Phrase('did you guess'), new Phrase('great work'), new Phrase('amazing job')];
+        this.activePhrase = null; 
     }
     startGame(){
-        const startScreenOverlay = document.querySelector('#overlay');
         startScreenOverlay.style.display = 'none';
 
         const randomPhrase = this.getRandomPhrase();
-        const newPhraseObject = new Phrase(`${randomPhrase}`);
-        this.activePhrase = newPhraseObject;
+        this.activePhrase = randomPhrase;
         this.activePhrase.addPhraseToDisplay();
     }
 
@@ -25,45 +22,68 @@ class Game{
     }
 
     handleInteraction(){
+        keyClicked.disabled = true;
+        const keyClickedContent = keyClicked.textContent;
+
         const characters = this.activePhrase.phrase.split('');
         const lowerCaseRegex = /[a-z]/;
         const letters = characters.filter(character => lowerCaseRegex.test(character));
-        keyboardBtns.forEach(button =>{
-            button.addEventListener('click', (e)=>{
-                const target = e.target;
-                target.disabled = true;
-                const key = e.target.textContent;
-                if(!letters.includes(key)){
-                    target.classList.add('wrong');
-                    this.removeLife();
-                }else{
-                    target.classList.add('chosen');
-                    this.activePhrase.showMatchedLetter();
-                    this.checkForWin();
-                        //if player won game call gameOver method
-                }
-            });
-        });
+
+        if(!letters.includes(keyClickedContent)){
+            keyClicked.classList.add('wrong');
+            this.removeLife();
+        }else{
+            keyClicked.classList.add('chosen');
+            this.activePhrase.showMatchedLetter();
+            if(this.checkForWin()){
+                this.gameOver();
+            }
+        }
     }
+    
     removeLife(){ 
         const scoreboard = document.querySelector('#scoreboard');
         const livesNodeList = scoreboard.querySelectorAll('img[src = "images/liveHeart.png"]');
         const lastNodeElement = livesNodeList[livesNodeList.length -1];
-        if(livesNodeList.length > 0){
+
+        if(this.missed === 5){
+            this.gameOver();
+        }else{
             lastNodeElement.setAttribute('src', 'images/lostHeart.png');
             this.missed += 1;
-        }else{
-            this.gameOver();
         }
     }
     checkForWin(){
         const lettersDisplayed = phraseDiv.querySelectorAll('li.letter');
-        
+        const lettersShown = phraseDiv.querySelectorAll('li.letter.show');
+        if(lettersDisplayed.length === lettersShown.length){
+            return true;
+        }else{
+            return false;
+        }
     }
     gameOver(){
-        //const startScreenOverlay = document.querySelector('#overlay');
-        //startScreenOverlay.style.display = 'block';
-        console.log('game over');
+        startScreenOverlay.style.display = 'block';
+        if(this.checkForWin()){
+            startScreenOverlay.className = 'win';
+            gameOverMessage.innerHTML = 'You win!';
+            startScreenOverlay.querySelector('button').innerHTML = 'Play Again!';
+        }else{
+            startScreenOverlay.className = 'lose';
+            gameOverMessage.innerHTML = 'Sorry, you lost. Try again next time!';
+            startScreenOverlay.querySelector('button').innerHTML = 'Play Again!';
+        }
+        phraseUL.innerHTML = '';
+        keyboardBtns.forEach(button=>{
+            button.disabled = false;
+            button.className = 'key';
+        });
+        const scoreboard = document.querySelector('#scoreboard');
+        const livesNodeList = scoreboard.querySelectorAll('img');
+        livesNodeList.forEach(node =>{
+            node.setAttribute('src', 'images/liveHeart.png');
+        });
+        this.missed = 0;
     }
 }
 
