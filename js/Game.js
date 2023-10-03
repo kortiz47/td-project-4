@@ -37,24 +37,33 @@ class Game{
                     target.classList.add('wrong');
                     this.removeLife();
                 }else{
-                    console.log(this.activePhrase);
                     target.classList.add('chosen');
                     this.activePhrase.showMatchedLetter();
-                    //call checkforWin
+                    this.checkForWin();
                         //if player won game call gameOver method
                 }
             });
         });
     }
-    removeLife(){
-
+    removeLife(){ 
+        const scoreboard = document.querySelector('#scoreboard');
+        const livesNodeList = scoreboard.querySelectorAll('img[src = "images/liveHeart.png"]');
+        const lastNodeElement = livesNodeList[livesNodeList.length -1];
+        if(livesNodeList.length > 0){
+            lastNodeElement.setAttribute('src', 'images/lostHeart.png');
+            this.missed += 1;
+        }else{
+            this.gameOver();
+        }
     }
     checkForWin(){
-
+        const lettersDisplayed = phraseDiv.querySelectorAll('li.letter');
+        
     }
     gameOver(){
-
+        //const startScreenOverlay = document.querySelector('#overlay');
+        //startScreenOverlay.style.display = 'block';
+        console.log('game over');
     }
 }
 
-const newGame = new Game();
