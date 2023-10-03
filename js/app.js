@@ -15,3 +15,16 @@ keyboardBtns.forEach(button=>{
         newGame.handleInteraction();
     });
 });
+
+
+// keyboardBtns.addEventListener('keyup', (e)=>{
+//     const lowerCaseRegex = /[a-z]/;
+//     if(lowerCaseRegex.test(e.key)){
+//         console.log(e.target);
+//         console.log(e.key);
+//     }
+    
+// })
+
+
+

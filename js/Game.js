@@ -11,8 +11,7 @@ class Game{
     startGame(){
         startScreenOverlay.style.display = 'none';
 
-        const randomPhrase = this.getRandomPhrase();
-        this.activePhrase = randomPhrase;
+        this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
 
@@ -41,6 +40,16 @@ class Game{
         }
     }
     
+    checkForWin(){
+        const lettersDisplayed = phraseDiv.querySelectorAll('li.letter');
+        const lettersShown = phraseDiv.querySelectorAll('li.letter.show');
+        if(lettersDisplayed.length === lettersShown.length){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     removeLife(){ 
         const scoreboard = document.querySelector('#scoreboard');
         const livesNodeList = scoreboard.querySelectorAll('img[src = "images/liveHeart.png"]');
@@ -53,17 +62,9 @@ class Game{
             this.missed += 1;
         }
     }
-    checkForWin(){
-        const lettersDisplayed = phraseDiv.querySelectorAll('li.letter');
-        const lettersShown = phraseDiv.querySelectorAll('li.letter.show');
-        if(lettersDisplayed.length === lettersShown.length){
-            return true;
-        }else{
-            return false;
-        }
-    }
+
     gameOver(){
-        startScreenOverlay.style.display = 'block';
+        startScreenOverlay.style.display = 'block flex';
         if(this.checkForWin()){
             startScreenOverlay.className = 'win';
             gameOverMessage.innerHTML = 'You win!';
