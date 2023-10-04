@@ -36,7 +36,7 @@ class Game{
             this.activePhrase.showMatchedLetter();
             if(this.checkForWin()){
                 keyboardBtns.forEach(button =>{button.disabled = true});
-                setTimeout(()=>{this.gameOver()}, 1000);
+                setTimeout(()=>{this.gameOver()}, 700);
             }
         }
     }
@@ -58,7 +58,7 @@ class Game{
 
         if(this.missed === 4){
             keyboardBtns.forEach(button =>{button.disabled = true});
-            setTimeout(()=>{this.gameOver()}, 1000);
+            setTimeout(()=>{this.gameOver()}, 700);
         }else{
             lastNodeElement.setAttribute('src', 'images/lostHeart.png');
             this.missed += 1;
