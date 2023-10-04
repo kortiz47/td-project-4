@@ -14,6 +14,14 @@ const startScreenOverlay = document.querySelector('#overlay');
 const gameOverMessage = document.querySelector('#game-over-message');
 
 
+/**
+ * Phrase class
+ * @constructor {string} - takes in a string as an arguement
+ * @addPhraseToDispaly {none} - uses the phrase passed into the constructor, splits it into an array, and appends the html elements to the page
+ * @checkLetter {none} - checks to see if a letter clicked by user exists within the phrase and returns the letter if true and false if not
+ * @showMatchedLetter {} - if a letter exists in the phrase it is shown to user
+ */
+
 class Phrase{
     constructor(phrase){
         this.phrase = phrase.toLowerCase();
