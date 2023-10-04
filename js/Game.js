@@ -35,7 +35,8 @@ class Game{
             keyClicked.classList.add('chosen');
             this.activePhrase.showMatchedLetter();
             if(this.checkForWin()){
-                this.gameOver();
+                setTimeout(this.gameOver(), 1000);
+                // this.gameOver();
             }
         }
     }
