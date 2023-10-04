@@ -16,8 +16,6 @@ keyboardBtns.forEach(button=>{
     });
 });
 
-
-
 document.addEventListener('keyup', (e)=>{
     const lowerCaseRegex = /[a-z]/;
     if(startScreenOverlay.style.display === 'none'){
@@ -30,7 +28,8 @@ document.addEventListener('keyup', (e)=>{
             }
         }
     }
-})
+});
+
 
 
 

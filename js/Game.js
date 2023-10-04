@@ -5,7 +5,7 @@
 class Game{
     constructor(){
         this.missed = 0; 
-        this.phrases = [new Phrase('hello world'), new Phrase('beatiful day'), new Phrase('did you guess'), new Phrase('great work'), new Phrase('amazing job')];
+        this.phrases = [new Phrase('hello world'), new Phrase('beautiful day'), new Phrase('did you guess'), new Phrase('great work'), new Phrase('amazing job')];
         this.activePhrase = null; 
     }
     startGame(){
@@ -35,8 +35,8 @@ class Game{
             keyClicked.classList.add('chosen');
             this.activePhrase.showMatchedLetter();
             if(this.checkForWin()){
-                setTimeout(this.gameOver(), 1000);
-                // this.gameOver();
+                keyboardBtns.forEach(button =>{button.disabled = true});
+                setTimeout(()=>{this.gameOver()}, 1000);
             }
         }
     }
@@ -57,7 +57,8 @@ class Game{
         const lastNodeElement = livesNodeList[livesNodeList.length -1];
 
         if(this.missed === 4){
-            this.gameOver();
+            keyboardBtns.forEach(button =>{button.disabled = true});
+            setTimeout(()=>{this.gameOver()}, 1000);
         }else{
             lastNodeElement.setAttribute('src', 'images/lostHeart.png');
             this.missed += 1;
