@@ -47,7 +47,7 @@ class Phrase{
         const letters = characters.filter(character => lowerCaseRegex.test(character));
         const key = keyClicked.textContent;
         if(letters.includes(key)){
-            this.showMatchedLetter(key);
+            this.showMatchedLetter();
         }else{
             return false;
         }
